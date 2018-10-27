@@ -76,7 +76,6 @@ app.post('/signup', function (req, res) {
             console.log('Error : ' + err);
             return res.render('signup');
         }
-
         passport.authenticate('local')(req, res, function () {
             console.log(user);
             res.redirect('/');
@@ -90,7 +89,6 @@ app.post('/send', isLoggedIn, (req, res) => {
         if (!serr) {
             User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
                 if (!rerr) {
-                    console.log(receiver)
                     if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
                         Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
                             if (!err) {
@@ -139,58 +137,62 @@ app.post('/receive', isLoggedIn, (req, res) => {
 });
 
 app.get('/mine', isLoggedIn, (req, res) => {
-    console.log('in mine');
-    console.log(tempChain);
-    let minedBlock = Blockchain.mine(tempChain[0]);
-    minedBlock.prevhash = Blockchain.getprevblock().hash;
-    minedBlock.index = Blockchain.blocks.length;
-    Blockchain.blocks.push(minedBlock);
-    tempChain.shift();
-    console.log(Blockchain.blocks)
+    if (tempChain.length === 0) {
+        res.redirect('/home');
+    } else {
+        console.log('in mine');
+        console.log(tempChain);
+        let minedBlock = Blockchain.mine(tempChain[0]);
+        minedBlock.prevhash = Blockchain.getprevblock().hash;
+        minedBlock.index = Blockchain.blocks.length;
+        Blockchain.blocks.push(minedBlock);
+        tempChain.shift();
+        console.log(Blockchain.blocks)
 
-    User.findOne({ userId: minedBlock.data.senderkey }, (serr, sender) => {
-        if (!serr) {
-            sender.cash = sender.cash + minedBlock.data.money - 1;
-            sender.points = sender.points - minedBlock.data.power;
-            sender.save((saveserr) => {
-                if (!saveserr) {
-                    User.findOne({ userId: minedBlock.data.receiverkey }, (rerr, receiver) => {
-                        if (!rerr) {
-                            receiver.cash = receiver.cash - minedBlock.data.money;
-                            receiver.points = receiver.points + minedBlock.data.power;
-                            receiver.save((savererr) => {
-                                if (!savererr) {
-                                    User.findOne({ userId: res.locals.currentUser.userId }, (merr, miner) => {
-                                        if (!merr) {
-                                            miner.cash += 1;
-                                            miner.save((savemerr) => {
-                                                if (!savemerr) {
-                                                    console.log('mining completed');
-                                                    res.redirect('/home');
-                                                } else {
-                                                    console.log(savemerr);
-                                                }
-                                            });
-                                        } else {
-                                            console.log(merr);
-                                        }
-                                    });
-                                } else {
-                                    console.log(savererr);
-                                }
-                            });
-                        } else {
-                            console.log(rerr);
-                        }
-                    });
-                } else {
-                    console.log(saveserr);
-                }
-            });
-        } else {
-            console.log(serr);
-        }
-    });
+        User.findOne({ userId: minedBlock.data.senderkey }, (serr, sender) => {
+            if (!serr) {
+                sender.cash = sender.cash + minedBlock.data.money - 1;
+                sender.points = sender.points - minedBlock.data.power;
+                sender.save((saveserr) => {
+                    if (!saveserr) {
+                        User.findOne({ userId: minedBlock.data.receiverkey }, (rerr, receiver) => {
+                            if (!rerr) {
+                                receiver.cash = receiver.cash - minedBlock.data.money;
+                                receiver.points = receiver.points + minedBlock.data.power;
+                                receiver.save((savererr) => {
+                                    if (!savererr) {
+                                        User.findOne({ userId: res.locals.currentUser.userId }, (merr, miner) => {
+                                            if (!merr) {
+                                                miner.cash += 1;
+                                                miner.save((savemerr) => {
+                                                    if (!savemerr) {
+                                                        console.log('mining completed');
+                                                        res.redirect('/home');
+                                                    } else {
+                                                        console.log(savemerr);
+                                                    }
+                                                });
+                                            } else {
+                                                console.log(merr);
+                                            }
+                                        });
+                                    } else {
+                                        console.log(savererr);
+                                    }
+                                });
+                            } else {
+                                console.log(rerr);
+                            }
+                        });
+                    } else {
+                        console.log(saveserr);
+                    }
+                });
+            } else {
+                console.log(serr);
+            }
+        });
+    }
 });
 
 app.listen('8080', () => {
