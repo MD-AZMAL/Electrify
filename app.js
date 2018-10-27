@@ -15,19 +15,21 @@ const express = require('express'),
 mongoose.connect('mongodb://localhost:27017/electrify', {
     useNewUrlParser: true
 });
-
 // server requirements  
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
 
-//use total block
-let genesisblock = new block(0, '00000000000', '0,', '0', '0', '0');
+//genesis block setup
+let genesisblock = new block('0', '00000000000', '0,', '0', '0', '0');
 let Blockchain = new blockchain(genesisblock);
+let genBlock = Blockchain.mine(genesisblock);
+Blockchain.blocks.push(genBlock);
+console.log(Blockchain.blocks[0].data);
 var tempChain = [];
-
 
 // passport setup
 app.use(expressSession({ secret: 'codaemon secret', saveUninitialized: false, resave: false }));
@@ -132,3 +134,4 @@ app.post('/receive', (req, res) => {
 app.listen('8080', () => {
     console.log('Server started at port 8080');
 });
+console.log(Blockchain.blocks[0]);
