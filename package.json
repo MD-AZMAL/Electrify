@@ -1,0 +1,25 @@
+{
+  "name": "electrify",
+  "version": "1.0.0",
+  "description": "Blockchain based power sharing solution to reduce the power gap.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MD-AZMAL/Electrify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MD-AZMAL/Electrify/issues"
+  },
+  "homepage": "https://github.com/MD-AZMAL/Electrify#readme",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.7"
+  }
+}
