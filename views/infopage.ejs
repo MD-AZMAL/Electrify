@@ -23,14 +23,15 @@
     <link href="https://fonts.googleapis.com/css?family=Bitter|Frank+Ruhl+Libre|Merriweather+Sans|Noto+Serif" rel="stylesheet">
 
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="jQuery-plugin-progressbar.js"></script>
+    <script src="jQuery-plugin-progressbar.js"></script>
 
 
     <style>
         .progress {
-  margin: 10px;
-  width: 380px;
-}
+            margin: 10px;
+            width: 380px;
+        }
+
         .sidenav {
             height: 100%;
             width: 250px;
@@ -129,104 +130,129 @@
             margin-right: auto;
         }
 
-          body {font-family: Arial, Helvetica, sans-serif;}
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-button {
-    background-color: #818181;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-button:hover {
-    opacity: 0.8;
-}
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
-.container {
-    padding: 16px;
-}
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    border: 1px solid #888;
-    width: 30%; 
-}
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-}
-    
-@keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-}
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-#btnG{
-    width:30%;
-    margin-left: 35%;
-    margin-right: 35%
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #818181;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+            to {
+                transform: scale(1)
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+        #btnG {
+            width: 30%;
+            margin-left: 35%;
+            margin-right: 35%
+        }
     </style>
 
     <!--.flex-container {
@@ -298,7 +324,7 @@ span.psw {
                             <%= rec.requirement %>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm">Send</button>
+                            <button type="button" class="btn btn-primary btn-sm send_data">Send</button>
                         </td>
                     </tr>
                     <% }); %>
@@ -321,78 +347,85 @@ span.psw {
 
 
     </div>
-       
-       <div id="id01" class="modal">
-  
-            <form class="modal-content animate" action="/action_page.php">
-              <div class="imgcontainer">
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/receive" method="POST">
+            <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <h2>RECEIVE</h2>
-              </div>
-            
-                <div class="container">
-                  <label for="uname"><b>Receiver Name</b></label>
-                  <input type="text" placeholder="Enter Username" name="uname" required>
-            
-                  <label for="uid"><b>Receiver ID</b></label>
-                  <input type="any" placeholder="Enter Receiver ID" name="uid" required>
+            </div>
 
-                  <label for="uid"><b>Receiver Key</b></label>
-                  <input type="any" placeholder="Enter Receiver Key" name="uid" required>
-                    
-                  <button type="submit">Broadcast</button>
-                  
+            <div class="container">
+                <label for="receivername">
+                    <b>Receiver Name</b>
+                </label>
+                <input type="text" placeholder="Enter Username" name="receivername" required>
+
+                <label for="receiverId">
+                    <b>Receiver ID</b>
+                </label>
+                <input type="any" placeholder="Enter Receiver ID" name="receiverId" required>
+
+                <label for="requirement">
+                    <b>Requirement</b>
+                </label>
+                <input type="any" placeholder="Enter Receiver Key" name="requirement" required>
+
+                <button type="submit">Broadcast</button>
+
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+
+        var modal = document.getElementById('id01');
+
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        console.log(receiversList);
+    </script>
+    <!--For Mining-->
+    <div id="id02" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php">
+
+
+            <div class="container">
+                <h2>MINING...</h2>
+            </div>
+            <div class="progress">
+                <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span id="current-progress"></span>
+
                 </div>
-              
-            </form>
-          </div>
-          
-          <script>
-         
-          var modal = document.getElementById('id01');
-          
-         
-          window.onclick = function(event) {
-              if (event.target == modal) {
-                  modal.style.display = "none";
-              }
-          }
-          </script>
-          <!--For Mining-->
-          <div id="id02" class="modal">
-  
-                <form class="modal-content animate" action="/action_page.php">
-                  
-                
-                    <div class="container">
-                     <h2>MINING...</h2>
-                    </div>
-                    <div class="progress">
-                            <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                              <span id="current-progress"></span>
-                              
-                            </div>
-                           
-                          </div>
-                        <button id="btnG" type="button" class="btn btn-success btn-sm">Go To Blocks</button>
-                          
-                    </form>
-                    
-              </div>
-              
-              <script>
-             
-              var modal = document.getElementById('id02');
-              
-             
-              window.onclick = function(event) {
-                  if (event.target == modal) {
-                      modal.style.display = "none";
-                  }
-              }
-              </script>
-              
-              });
+
+            </div>
+            <button id="btnG" type="button" class="btn btn-success btn-sm">Go To Blocks</button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        var modal = document.getElementById('id02');
+
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script> });
 </body>
 
 </html>
