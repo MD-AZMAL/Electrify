@@ -103,7 +103,7 @@ app.post('/send', (req, res) => {
                                 Receiver.findByIdAndRemove(rec._id, (rmerr) => {
                                     if (!rmerr) {
                                         console.log('removed');
-                                        res.send('done');
+                                        res.send('sent');
                                     } else {
                                         console.log()
                                     }
@@ -135,6 +135,7 @@ app.post('/receive', (req, res) => {
     Receiver.create(rec, (err, receiver) => {
         if (!err) {
             console.log(receiver);
+            res.send('received on server');
         } else {
             console.log('Error : ' + err);
         }
@@ -148,6 +149,7 @@ app.get('/mine', (req, res) => {
     Blockchain.blocks.push(minedBlock);
     tempChain.shift();
     console.log(Blockchain.blocks[Blockchain.blocks.length - 1]);
+    res.send('mined the block');
 });
 
 app.listen('8080', () => {
