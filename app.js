@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/electrify', {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-
+app.use(express.static('public'));
 
 
 //genesis block setup
@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.render('frontpage');
 });
 
 app.get('/sigup', (req, res) => {
@@ -58,7 +58,8 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/home', isLoggedIn, (req, res) => {
-    console.log(res.locals.currentUser);
+    // console.log(res.locals.currentUser);
+    res.render('infopage');
 });
 
 app.get('/logout', (req, res) => {
