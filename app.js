@@ -131,10 +131,10 @@ app.post('/send', isLoggedIn, (req, res) => {
     });
 });
 
-app.post('/receive', (req, res) => {
+app.post('/receive', isLoggedIn, (req, res) => {
     let rec = {
-        receivername: req.body.receivername,
-        receiverId: req.body.receiverId,
+        receivername: res.locals.currentUser.username,
+        receiverId: res.locals.currentUser.userId,
         requirement: req.body.requirement
     }
     Receiver.create(rec, (err, receiver) => {

@@ -323,7 +323,11 @@
                             <%= rec.requirement %>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm send_data">Send</button>
+                            <form action="/send" method="POST">
+                                <input type="hidden" placeholder="Enter Receiver ID" name="receiverId" required value="<%= rec.receiverId %>">
+                                <input type="hidden" placeholder="Enter Receiver ID" name="requirement" required value="<%= rec.requirement%>">
+                                <button type="submit" class="btn btn-primary btn-sm send_data">Send</button>
+                            </form>
                         </td>
                     </tr>
                     <% }); %>
@@ -356,7 +360,7 @@
             </div>
 
             <div class="container">
-                <label for="receivername">
+                <!-- <label for="receivername">
                     <b>Receiver Name</b>
                 </label>
                 <input type="text" placeholder="Enter Username" name="receivername" required>
@@ -364,7 +368,7 @@
                 <label for="receiveId">
                     <b>Receiver ID</b>
                 </label>
-                <input type="any" placeholder="Enter Receiver ID" name="receiveId" required>
+                <input type="any" placeholder="Enter Receiver ID" name="receiveId" required> -->
 
                 <label for="requirement">
                     <b>Power Required</b>
