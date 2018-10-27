@@ -36,16 +36,16 @@ class Blockchain {
 
     }*/
 
-    getprevblock(block) {
+    getprevblock() {
         return this.blocks[this.blocks.length - 1];
     }
 
     mine(block) {
         let blockhash = SHA256(block.key);
+        console.log('mining');
         while (!blockhash.startsWith("000")) {
             block.nonce += 1;
             blockhash = SHA256(block.key);
-            console.log(blockhash);
         }
 
         block.hash = blockhash;

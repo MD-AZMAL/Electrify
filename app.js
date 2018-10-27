@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 let genesisblock = new block('0', '00000000000', '0,', '0', '0', '0');
 let Blockchain = new blockchain(genesisblock);
 let genBlock = Blockchain.mine(genesisblock);
+genBlock.prevhash = '0'.repeat(64);
 Blockchain.blocks.push(genBlock);
 console.log(Blockchain.blocks[0].data);
 var tempChain = [];
@@ -98,9 +99,17 @@ app.post('/send', (req, res) => {
                                 let cost = 10;
                                 let tmp = new block(req.body.senderId, req.body.receiverId, req.body.requirement, cost);
                                 tempChain.push(tmp);
-                                console.log(tmp);
+                                console.log(tempChain[0]);
+                                Receiver.findByIdAndRemove(rec._id, (rmerr) => {
+                                    if (!rmerr) {
+                                        console.log('removed');
+                                        res.send('done');
+                                    } else {
+                                        console.log()
+                                    }
+                                });
                             } else {
-                                console.log(err);
+                                console.log(rmerr);
                             }
                         });
                     } else {
@@ -130,6 +139,15 @@ app.post('/receive', (req, res) => {
             console.log('Error : ' + err);
         }
     });
+});
+
+app.get('/mine', (req, res) => {
+    console.log('in mine');
+    let minedBlock = Blockchain.mine(tempChain[0]);
+    minedBlock.prevhash = Blockchain.getprevblock().hash;
+    Blockchain.blocks.push(minedBlock);
+    tempChain.shift();
+    console.log(Blockchain.blocks[Blockchain.blocks.length - 1]);
 });
 
 app.listen('8080', () => {
