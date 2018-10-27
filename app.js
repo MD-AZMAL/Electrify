@@ -22,16 +22,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-
 //genesis block setup
-let genesisblock = new block('0', '00000000000', '0,', '0', '0', '0');
+let genesisblock = new block('00000000000', '00000000000', 0, 0);
+genesisblock.prevhash = '0'.repeat(64);
+genesisblock.index = 0;
 let Blockchain = new blockchain(genesisblock);
-let genBlock = Blockchain.mine(genesisblock);
-genBlock.prevhash = '0'.repeat(64);
-Blockchain.blocks.push(genBlock);
-console.log(Blockchain.blocks[0].data);
+Blockchain.blocks[0] = Blockchain.mine(Blockchain.blocks[0])
+console.log(Blockchain);
 var tempChain = [];
-
 
 // passport setup
 app.use(expressSession({ secret: 'codaemon secret', saveUninitialized: false, resave: false }));
@@ -59,14 +57,14 @@ app.get('/login', (req, res) => {
 
 app.get('/home', (req, res) => {
     // console.log(res.locals.currentUser);
-    Receiver.find({},(err,receiverList)=> {
-        if(!err) {
-            res.render('infopage',{receiverList: receiverList});
+    Receiver.find({}, (err, receiverList) => {
+        if (!err) {
+            res.render('infopage', { receiverList: receiverList });
         } else {
             console.log(err);
         }
     })
-    
+
 });
 
 app.get('/logout', (req, res) => {
@@ -96,24 +94,23 @@ app.post('/signup', function (req, res) {
 });
 
 app.post('/send', (req, res) => {
-    let cost = 10;
+    let cost = 6.45 * req.body.requirement;
     User.findOne({ userId: req.body.senderId }, (serr, sender) => {
         if (!serr) {
             User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
                 if (!rerr) {
+                    console.log(receiver)
                     if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
                         Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
                             if (!err) {
-                                let cost = 10;
-                                let tmp = new block(req.body.senderId, req.body.receiverId, req.body.requirement, cost);
+                                let tmp = new block(req.body.senderId, req.body.receiverId, Number(req.body.requirement), cost);
                                 tempChain.push(tmp);
-                                console.log(tempChain[0]);
                                 Receiver.findByIdAndRemove(rec._id, (rmerr) => {
                                     if (!rmerr) {
                                         console.log('removed');
                                         res.send('sent');
                                     } else {
-                                        console.log()
+                                        console.log(rmerr);
                                     }
                                 });
                             } else {
@@ -154,13 +151,13 @@ app.get('/mine', (req, res) => {
     console.log('in mine');
     let minedBlock = Blockchain.mine(tempChain[0]);
     minedBlock.prevhash = Blockchain.getprevblock().hash;
+    minedBlock.index = Blockchain.blocks.length;
     Blockchain.blocks.push(minedBlock);
     tempChain.shift();
-    console.log(Blockchain.blocks[Blockchain.blocks.length - 1]);
+    console.log(Blockchain.blocks)
     res.send('mined the block');
 });
 
 app.listen('8080', () => {
     console.log('Server started at port 8080');
 });
-console.log(Blockchain.blocks[0]);

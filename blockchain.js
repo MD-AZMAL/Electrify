@@ -19,9 +19,6 @@ class Blockchain {
 
         let block = new Block();
         let prevblock = this.getprevblock();
-
-        block.index = this.blocks.length;
-
         block.prevhash = prevblock.hash;
         block.hash = this.gethash(block);
 
