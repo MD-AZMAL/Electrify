@@ -6,6 +6,8 @@ const express = require('express'),
     expressSession = require('express-session'),
     isLoggedIn = require('./middlewares/isLoggedIn'),
     User = require('./models/user'),
+    block = require('./block'),
+    blockchain = require('./blockchain'),
     app = express();
 
 mongoose.connect('mongodb://localhost:27017/electrify', {
@@ -44,6 +46,7 @@ app.get('/login', (req, res) => {
 
 app.get('/home', isLoggedIn, (req, res) => {
     console.log(res.locals.currentUser);
+    res.render('home');
 });
 
 app.get('/logout', (req, res) => {
