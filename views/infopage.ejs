@@ -23,10 +23,14 @@
     <link href="https://fonts.googleapis.com/css?family=Bitter|Frank+Ruhl+Libre|Merriweather+Sans|Noto+Serif" rel="stylesheet">
 
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="jQuery-plugin-progressbar.js"></script>
+    <script src="jQuery-plugin-progressbar.js"></script>
 
 
     <style>
+        .progress {
+            margin: 10px;
+            width: 380px;
+        }
 
         .sidenav {
             height: 100%;
@@ -53,7 +57,6 @@
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 18px;
-
             color: antiquewhites;
             display: block;
         }
@@ -75,7 +78,6 @@
             width: 150px;
             height: 150px;
             border-radius: 50% 50% 50% 50%;
-
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -89,7 +91,6 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-
         }
 
         .a {
@@ -126,109 +127,129 @@
             margin-right: auto;
         }
 
-          body {font-family: Arial, Helvetica, sans-serif;}
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-button {
-    background-color: #818181;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-button:hover {
-    opacity: 0.8;
-}
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
-.container {
-    padding: 16px;
-}
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
-    border: 1px solid #888;
-    width: 30%; 
-}
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-}
-    
-@keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-}
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-#btnG{
-    width:30%;
-    margin-left: 35%;
-    margin-right: 35%
-}
-table#table1 {
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
-  }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #818181;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+            to {
+                transform: scale(1)
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+        #btnG {
+            width: 30%;
+            margin-left: 35%;
+            margin-right: 35%
+        }
     </style>
 
     <!--.flex-container {
@@ -236,7 +257,6 @@ table#table1 {
  
   
 }
-
 .flex-container > div {
   background-color: #f1f1f1;
   width: 100px;
@@ -252,7 +272,9 @@ table#table1 {
 
 <body>
     <div class="sidenav" style="font-family:'Noto Serif', serif; color: antiquewhite">
-        <div class="user one"> </div>
+        <div class="user one">
+
+        </div>
         <a class="btn" button type="button">Settings</a>
 
         <a class="btn" button type="button">Kw/hr</a>
@@ -261,13 +283,11 @@ table#table1 {
         <a class="btn" button type="button">Verify</a>
         <a class="btn" button type="button">View Chain</a>
         <a class="btn" button type="button">Update Block</a>
-      
-        <a class="btn" button type="submit" href="logout" style="color:#f7f4f4">Logout</a>
- </div>
+        <a class="btn" button type="button" href="logout" style="color: #f7f4f4;">Logout</a>
+    </div>
 
     <div class="main">
         <div class="a">
-
             <p style="color: antiquewhite;font-size: 50px; text-align: left;font-family: 'Frank Ruhl Libre', serif;">Usage Details</p>
         </div>
         <div class="jumbotron">
@@ -279,11 +299,9 @@ table#table1 {
             </div>
         </div>
 
-        <table  id="table1" class="table table-bordered table-responsive ">
-
+        <table class="table table-bordered table-responsive " style="width: 400px">
             <thread>
-
-                <tr align="center" style="font-family: 'Frank Ruhl Libre', serif; font-size:22px">
+                <tr style="font-family: 'Frank Ruhl Libre', serif; font-size:22px">
                     <th>User</th>
                     <th>Power in kWhr</th>
                     <th>Action</th>
@@ -291,7 +309,7 @@ table#table1 {
             </thread>
             <tbody>
                 <% receiverList.forEach((rec)=>{ %>
-                    <tr style="font-family:'Noto Serif', serif; font-size: 20px;">
+                    <tr style="font-family:'Noto Serif', serif; font-size: 20px">
                         <td>
                             <%= rec.receivername %>
                         </td>
@@ -299,95 +317,57 @@ table#table1 {
                             <%= rec.requirement %>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm">Send</button>
+                            <form action="/send" method="POST">
+                                <input type="hidden" placeholder="Enter Receiver ID" name="receiverId" required value="<%= rec.receiverId %>">
+                                <input type="hidden" placeholder="Enter Receiver ID" name="requirement" required value="<%= rec.requirement%>">
+                                <button type="submit" class="btn btn-primary btn-sm send_data">Send</button>
+                            </form>
                         </td>
                     </tr>
                     <% }); %>
 
             </tbody>
         </table>
-   
-        <button id="btn1" type="button" class="btn btn-primary btn-lg;" style="margin:15px"; onclick="document.getElementById('id02').style.display='block'">Mine</button>
-        <button id="btn2" type="button" class="btn btn-primary btn-lg;" style="margin:15px"; onclick="document.gs="btnx">etElementById('id01').style.display='block'">Receive</button>
-        </div>
-       
-       <div id="id01" class="modal">
-  
-            <form class="modal-content animate" action="/action_page.php">
-              <div class="imgcontainer">
+        <form action="/mine" method="GET" style="display: inline">
+            <button id="btn1" type="submit" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
+        </form>
+        <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
+        <button id="btn3" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">History</button>
+    </div>
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/receive" method="POST">
+            <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <h2>RECEIVE</h2>
-              </div>
-            
-                <div class="container">
-                  <label for="uname"><b>Receiver Name</b></label>
-                  <input type="text" placeholder="Enter Username" name="uname" required>
-            
-                  <label for="uid"><b>Receiver ID</b></label>
-                  <input type="any" placeholder="Enter Receiver ID" name="uid" required>
+            </div>
 
-                  <label for="uid"><b>Power Required</b></label>
-                  <input type="any" placeholder="Enter the amount" name="uid" required>
-                    
-                  <button type="submit">Broadcast</button>
-                  
-                </div>
-              
-            </form>
-          </div>
-          
-          <script>
-         
-          var modal = document.getElementById('id01');
-          
-         
-          window.onclick = function(event) {
-              if (event.target == modal) {
-                  modal.style.display = "none";
-              }
-          }
-          </script>
-          <!--For Mining-->
-          
-          <div id="id02" class="modal">
-  
-            <form class="modal-content animate" action="/action_page.php">
-              <div class="imgcontainer">
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                
-          </div>
-            
-                <div class="container">
-                  <label for="uID"><b>User ID</b></label>
-                  <input type="text" placeholder="Enter UserID" name="uID" required>
-            
-                
-                    
-                  
-                  <button id="btnG" type="button" class="btn btn-success btn-sm">Mine</button>
-                </div>
-              
-            </form>
-          
-                    
-                          
-                   
-                    
-              </div>
-              
-              <script>
-             
-              var modal = document.getElementById('id02');
-              
-             
-              window.onclick = function(event) {
-                  if (event.target == modal) {
-                      modal.style.display = "none";
-                  }
-              }
-              </script>
-              
-              });
+            <div class="container">
+                <label for="requirement">
+                    <b>Power Required</b>
+                </label>
+                <input type="any" placeholder="Enter the amount" name="requirement" required>
+                <button type="submit">Broadcast</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        var modal = document.getElementById('id01');
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        var modal = document.getElementById('id02');
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script> });
 </body>
 
 </html>
