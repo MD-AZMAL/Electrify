@@ -22,8 +22,15 @@
 
     <link href="https://fonts.googleapis.com/css?family=Bitter|Frank+Ruhl+Libre|Merriweather+Sans|Noto+Serif" rel="stylesheet">
 
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="jQuery-plugin-progressbar.js"></script>
+
 
     <style>
+        .progress {
+  margin: 10px;
+  width: 380px;
+}
         .sidenav {
             height: 100%;
             width: 250px;
@@ -177,7 +184,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
-    width: 80%; 
+    width: 30%; 
 }
 .close {
     position: absolute;
@@ -244,7 +251,7 @@ span.psw {
 
         <a class="btn" button type="button">Kw/hr</a>
         <a class="btn" button type="button">Balance</a>
-        <a class="btn" button type="button">Mine</a>
+        <a class="btn" button type="button" onclick="document.getElementById('id02').style.display='block'">Mine</a>
         <a class="btn" button type="button">Points</a>
         <a class="btn" button type="button">Verify</a>
         <a class="btn" button type="button">View Chain</a>
@@ -345,6 +352,36 @@ span.psw {
               }
           }
           </script>
+          <!--For Mining-->
+          <div id="id02" class="modal">
+  
+                <form class="modal-content animate" action="/action_page.php">
+                  
+                
+                    <div class="container">
+                     <h2>MINING...</h2>
+                    </div>
+                    <div class="progress">
+                            <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              <span id="current-progress"></span>
+                            </div>
+                          </div>
+                    </form>
+              </div>
+              
+              <script>
+             
+              var modal = document.getElementById('id02');
+              
+             
+              window.onclick = function(event) {
+                  if (event.target == modal) {
+                      modal.style.display = "none";
+                  }
+              }
+              </script>
+              
+              });
 </body>
 
 </html>
