@@ -102,6 +102,9 @@
     border-radius: 20px;
     width:15%;
   }  
+  .table-responsive{
+      max-height:300px;
+  }
    </style>
  
 <!--.flex-container {
@@ -143,7 +146,7 @@
 
         <div class="main">
             <div class="a">
-                    <a class="btn" button type="button";>Balance</a><br>
+                    <a class="btn" button type="button";margin-right:"10px";>Balance</a>
                     <a class="btn" button type="button";>Points</a>
             <p style="color: antiquewhite;font-size: 50px; text-align: left;font-family: 'Frank Ruhl Libre', serif;">Usage Details</p>
         </div>
@@ -154,6 +157,24 @@
                   70%
                 </div>
               </div> </div>
+              <table class="table-responsive"></table>
+              <table class="table table-bordered">
+                  <thread>
+                      <tr>
+                          <th>User</th>
+                          <th>Power in kWhr</th>
+                          <th>Action</th>
+                      </tr>
+                  </thread>
+                  <tbody>
+                      <tr>
+                          <td>Name</td>
+                          <td>Power</td>
+                          <td><button type="button" class="btn btn-primary btn-sm" >Send</button></td>
+                      </tr>
+                  </tbody>
+              </table>
+            </table>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque eum pariatur exercitationem explicabo consequatur minus perferendis! Asperiores, omnis consequatur earum nisi excepturi dolorem sit fugiat, libero delectus provident, adipisci ex.</p>
             
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iste quam adipisci eveniet vel enim recusandae soluta, aliquam sequi numquam placeat quos itaque odit quibusdam vitae vero cum deserunt mollitia!</p>
