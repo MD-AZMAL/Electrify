@@ -284,7 +284,7 @@
         <a class="btn" button type="button">View Chain</a>
         <a class="btn" button type="button">Update Block</a>
         <form action="/logout" method="GET">
-            <button type="submit">Log Out</button>
+            <button class="btn" button type="submit">Log Out</button>
         </form>
     </div>
 
@@ -330,7 +330,9 @@
 
             </tbody>
         </table>
-        <button id="btn1" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
+        <form action="/mine" method="GET" style="display: inline">
+            <button id="btn1" type="submit" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
+        </form>
         <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
         <button id="btn3" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">History</button>
     </div>
@@ -342,22 +344,11 @@
             </div>
 
             <div class="container">
-                <!-- <label for="receivername">
-                    <b>Receiver Name</b>
-                </label>
-                <input type="text" placeholder="Enter Username" name="receivername" required>
-                <label for="receiveId">
-                    <b>Receiver ID</b>
-                </label>
-                <input type="any" placeholder="Enter Receiver ID" name="receiveId" required> -->
-
                 <label for="requirement">
                     <b>Power Required</b>
                 </label>
                 <input type="any" placeholder="Enter the amount" name="requirement" required>
-
                 <button type="submit">Broadcast</button>
-
             </div>
 
         </form>
@@ -371,25 +362,6 @@
             }
         }
     </script>
-    <!--For Mining-->
-
-    <div id="id02" class="modal">
-
-        <form class="modal-content animate" action="/action_page.php">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-            </div>
-
-            <div class="container">
-                <label for="uID">
-                    <b>User ID</b>
-                </label>
-                <input type="text" placeholder="Enter UserID" name="uID" required>
-                <button id="btnG" type="button" class="btn btn-success btn-sm">Mine</button>
-            </div>
-        </form>
-    </div>
     <script>
         var modal = document.getElementById('id02');
         window.onclick = function (event) {
