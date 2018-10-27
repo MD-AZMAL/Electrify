@@ -31,6 +31,7 @@ Blockchain.blocks.push(genBlock);
 console.log(Blockchain.blocks[0].data);
 var tempChain = [];
 
+
 // passport setup
 app.use(expressSession({ secret: 'codaemon secret', saveUninitialized: false, resave: false }));
 app.use(passport.initialize());
