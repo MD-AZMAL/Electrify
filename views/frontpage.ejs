@@ -161,9 +161,11 @@
 
         /*sign up effects*/
 
-        body {
+        body,html {
             font-family: Arial, Helvetica, sans-serif;
             background: #F2B134;
+            width: 100%;
+            height: 100%;
         }
 
 
@@ -192,7 +194,10 @@
             opacity: 0.8;
         }
 
-
+        .jumbotron{
+            height: 100%;
+            width: 100%;
+        }
         .cancelbtn {
             width: auto;
             padding: 10px 18px;
@@ -297,12 +302,12 @@
     <div class="jumbotron" style="background-color: #112F41;color: #818181">
         <h1 class="display-2">ELECTRIFY</h1>
         <p class="lead">Smart Power Sharing solution using blockchain technology to reduce the power among the households.</p>
-    </div>
+    
     <div class="container">
         <button type="button" class="btn btn-basic" onclick="document.getElementById('id02').style.display='block'">SIGN UP</button>
         <button type="button" class="btn btn-basic" onclick="document.getElementById('id01').style.display='block'">LOGIN</button>
     </div>
-
+</div>
     <!--For Login In form-->
     <div id="id01" class="modal">
 
