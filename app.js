@@ -1,5 +1,3 @@
-
-
 const express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
@@ -26,10 +24,12 @@ app.set('view engine', 'ejs');
 //use total block
 blockchain.blocks;
 
-let genesisblock = new block(0,'00000000000','0,','0','0','0');
+let genesisblock = new block('0','00000000000','0,','0','0','0');
 let Blockchain = new blockchain(genesisblock);
+Blockchain.mine(genesisblock);
 
-  
+let tempblockchain = new blockchain(genesisblock);
+console.log(tempblockchain.blocks[0].data);
 
 
 // passport setup
