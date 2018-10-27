@@ -93,9 +93,9 @@ app.post('/signup', function (req, res) {
     });
 });
 
-app.post('/send', (req, res) => {
+app.post('/send', isLoggedIn, (req, res) => {
     let cost = 6.45 * req.body.requirement;
-    User.findOne({ userId: req.body.senderId }, (serr, sender) => {
+    User.findOne({ userId: res.locals.currentUser.userId }, (serr, sender) => {
         if (!serr) {
             User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
                 if (!rerr) {
@@ -103,7 +103,7 @@ app.post('/send', (req, res) => {
                     if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
                         Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
                             if (!err) {
-                                let tmp = new block(req.body.senderId, req.body.receiverId, Number(req.body.requirement), cost);
+                                let tmp = new block(res.locals.currentUser.userId, req.body.receiverId, Number(req.body.requirement), cost);
                                 tempChain.push(tmp);
                                 Receiver.findByIdAndRemove(rec._id, (rmerr) => {
                                     if (!rmerr) {
@@ -147,8 +147,9 @@ app.post('/receive', (req, res) => {
     });
 });
 
-app.get('/mine', (req, res) => {
+app.get('/mine', isLoggedIn, (req, res) => {
     console.log('in mine');
+    console.log(tempChain);
     let minedBlock = Blockchain.mine(tempChain[0]);
     minedBlock.prevhash = Blockchain.getprevblock().hash;
     minedBlock.index = Blockchain.blocks.length;
@@ -168,7 +169,20 @@ app.get('/mine', (req, res) => {
                             receiver.points = receiver.points + minedBlock.data.power;
                             receiver.save((savererr) => {
                                 if (!savererr) {
-                                    res.send('mined the block');
+                                    User.findOne({ userId: res.locals.currentUser.userId }, (merr, miner) => {
+                                        if (!merr) {
+                                            miner.cash += 1;
+                                            miner.save((savemerr) => {
+                                                if (!savemerr) {
+                                                    res.send('mining completed');
+                                                } else {
+                                                    console.log(savemerr);
+                                                }
+                                            });
+                                        } else {
+                                            console.log(merr);
+                                        }
+                                    });
                                 } else {
                                     console.log(savererr);
                                 }
