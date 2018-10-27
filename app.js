@@ -155,7 +155,36 @@ app.get('/mine', (req, res) => {
     Blockchain.blocks.push(minedBlock);
     tempChain.shift();
     console.log(Blockchain.blocks)
-    res.send('mined the block');
+
+    User.findOne({ userId: minedBlock.data.senderkey }, (serr, sender) => {
+        if (!serr) {
+            sender.cash = sender.cash + minedBlock.data.money - 1;
+            sender.points = sender.points - minedBlock.data.power;
+            sender.save((saveserr) => {
+                if (!saveserr) {
+                    User.findOne({ userId: minedBlock.data.receiverkey }, (rerr, receiver) => {
+                        if (!rerr) {
+                            receiver.cash = receiver.cash - minedBlock.data.money;
+                            receiver.points = receiver.points + minedBlock.data.power;
+                            receiver.save((savererr) => {
+                                if (!savererr) {
+                                    res.send('mined the block');
+                                } else {
+                                    console.log(savererr);
+                                }
+                            });
+                        } else {
+                            console.log(rerr);
+                        }
+                    });
+                } else {
+                    console.log(saveserr);
+                }
+            });
+        } else {
+            console.log(serr);
+        }
+    });
 });
 
 app.listen('8080', () => {
