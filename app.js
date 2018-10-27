@@ -8,7 +8,7 @@ const express = require('express'),
     User = require('./models/user'),
     app = express();
 
-mongoose.connect('mongodb://localhost:27017/db', {
+mongoose.connect('mongodb://localhost:27017/electrify', {
     useNewUrlParser: true
 });
 
