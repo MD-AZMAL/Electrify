@@ -7,7 +7,19 @@ var UserSchema = new mongoose.Schema({
     email: String,
     userId: String,
     points: Number,
-    cash: Number
+    cash: Number,
+    chain: [{
+        index: Number,
+        prevhash: String,
+        hash: String,
+        nonce: Number,
+        data: {
+            senderKey: String,
+            recieverKey: String,
+            power: Number,
+            money: Number
+        }
+    }]
 });
 
 UserSchema.plugin(passportLocalMongoose);

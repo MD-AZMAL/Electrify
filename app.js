@@ -21,10 +21,10 @@ mongoose.connect('mongodb://localhost:27017/electrify', {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-let blockchain  = new Blockchain();
- 
+let blockchain = new Blockchain();
+
 //use total block
-   blockchain.blocks;
+blockchain.blocks;
 
 
 
