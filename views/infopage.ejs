@@ -92,7 +92,14 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0; 
+        }
         .header {
             background-color: #111;
             margin-left: 0;
@@ -290,8 +297,8 @@
 <body>
     <div class="sidenav" style="font-family:'Noto Serif', serif; color: antiquewhite">
         <div class="user one">
-
         </div>
+        <hr>
         <a class="btn" button type="button">
             <span class="boldIt">Name:</span>
             <%= user.username %>
@@ -310,7 +317,9 @@
         <a class="btn" button type="button" href="getBlocks" style="color: #f7f4f4;">
             <span class="boldIt">View Chain</span>
         </a>
-        <a class="btn" button type="button" href="logout" style="color: #f7f4f4;">Logout</a>
+        <a class="btn" button type="button" href="logout" style="color: #f7f4f4;">
+                <span class="boldIt">Logout</span></a>
+        
     </div>
 
     <div class="main">
