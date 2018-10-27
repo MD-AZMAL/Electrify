@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,85 +20,75 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <style>
-        .card-deck{background-color:black;
-        color: antiquewhite}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-family: sans-serif;
+            width: 100%;
+            background: #d2f2d2;
+            margin: 0;
+            padding: 0.5rem;
+        }
+
+        p:nth-of-type(2n) {
+            background: #f2d2d2;
+        }
+
+        .boldIt {
+            font-weight: bolder;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
+
 <body>
-    <div class="card">
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                            <label for="usr">Index:</label>
-                            <input type="number" class="form-control" id="usr">
-                </div>
-                <div class="form-group">
-                            <label for="pwd">Nonce:</label>
-                            <input type="number" class="form-control" id="Nonce">
-                </div>
-                
-                 <div class="form-group">
-                    <label for="pwd">Prev:</label>
-                    <input type="number" class="form-control" id="prev">
-                 </div>
-                 <div class="form-group">
-                    <label for="pwd">Hash:</label>
-                    <input type="float" class="form-control" id="hash">
-                </div>
-                <div class="form-group">
-                        <label for="pwd">Sender Key:</label>
-                        <input type="any" class="form-control" id="skey">
-                     </div>
-                     <div class="form-group">
-                            <label for="pwd">Receiver Key:</label>
-                            <input type="any" class="form-control" id="rkey">
-                         </div>
-                <div class="form-group">
-                        <label for="pwd">Points:</label>
-                        <input type="number" class="form-control" id="point">
-                     </div>
-                     <div class="form-group">
-                            <label for="pwd">Money:</label>
-                            <input type="float" class="form-control" id="mon">
+    <div class="container">
+        <div class="row">
+            <% blockchain.forEach((block)=>{ %>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                <span class="boldIt">Index:</span>
+                                <%= block.index %>
+                            </p>
+                            <p>
+                                <span class="boldIt">prevHash:</span>
+                                <%= block.prevhash %>
+                            </p>
+                            <p>
+                                <span class="boldIt">Hash:</span>
+                                <%= block.hash %>
+                            </p>
+                            <p>
+                                <span class="boldIt">Nonce:</span>
+                                <%= block.nonce %>
+                            </p>
+                            <p>
+                                <span class="boldIt">SenderKey:</span>
+                                <%= block.data.senderkey %>
+                            </p>
+                            <p>
+                                <span class="boldIt">ReceiverKey:</span>
+                                <%= block.data.receiverkey %>
+                            </p>
+                            <p>
+                                <span class="boldIt">Power:</span>
+                                <%= block.data.power %>
+                            </p>
+                            <p>
+                                <span class="boldIt">Money:</span>
+                                <%= block.data.money %>
+                            </p>
                         </div>
+                    </div>
+                </div>
+                <% }) %>
         </div>
-        <div class="card-body">
-                <form>
-        <div class="form-group">
-                <label for="usr">Index:</label>
-                <input type="number" class="form-control" id="usr">
     </div>
-    <div class="form-group">
-                <label for="pwd">Nonce:</label>
-                <input type="number" class="form-control" id="Nonce">
-    </div>
-    
-     <div class="form-group">
-        <label for="pwd">Prev:</label>
-        <input type="number" class="form-control" id="prev">
-     </div>
-     <div class="form-group">
-        <label for="pwd">Hash:</label>
-        <input type="float" class="form-control" id="hash">
-    </div>
-    <div class="form-group">
-            <label for="pwd">Sender Key:</label>
-            <input type="any" class="form-control" id="skey">
-         </div>
-         <div class="form-group">
-                <label for="pwd">Receiver Key:</label>
-                <input type="any" class="form-control" id="rkey">
-             </div>
-    <div class="form-group">
-            <label for="pwd">Points:</label>
-            <input type="number" class="form-control" id="point">
-         </div>
-         <div class="form-group">
-                <label for="pwd">Money:</label>
-                <input type="float" class="form-control" id="mon">
-            </div>
-</div>
-    </div>
-  
 </body>
+
 </html>

@@ -93,8 +93,10 @@
             margin-right: auto;
         }
 
-        .a {
+        .header {
             background-color: #111;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         #btn1 {
@@ -118,14 +120,14 @@
             width: 15%;
         }
 
-        .table-responsive {
+        /* .table-responsive {
             max-height: 300px;
         }
 
         table.center {
             margin-left: auto;
             margin-right: auto;
-        }
+        } */
 
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -251,15 +253,19 @@
             margin-right: 35%
         }
 
-        table#table1 {
-            width: 70%;
-            margin-left: 15%;
-            margin-right: 15%;
+        .table {
+            width: 80%;
+            margin: 0 auto;
         }
 
         #wrapper {
             display: flex;
             justify-content: center;
+        }
+
+        .boldIt {
+            font-weight: bolder;
+            font-size: 1.2rem;
         }
     </style>
 
@@ -286,36 +292,43 @@
         <div class="user one">
 
         </div>
-        <a class="btn" button type="button">Settings</a>
-
-        <a class="btn" button type="button">Kw/hr</a>
-        <a class="btn" button type="button">Balance</a>
-        <a class="btn" button type="button">Points</a>
-        <a class="btn" button type="button">Verify</a>
-        <a class="btn" button type="button">View Chain</a>
-        <a class="btn" button type="button">Update Block</a>
+        <a class="btn" button type="button">
+            <span class="boldIt">Name:</span>
+            <%= user.username %>
+        </a>
+        <a class="btn" button type="button">
+            <span class="boldIt">Kw/hr:</span>6.45
+        </a>
+        <a class="btn" button type="button">
+            <span class="boldIt">Balance:</span>
+            <%= user.cash %>
+        </a>
+        <a class="btn" button type="button">
+            <span class="boldIt">Units:</span>
+            <%= user.points %>
+        </a>
+        <a class="btn" button type="button" href="getBlocks">
+            <span class="boldIt" style="color: #f7f4f4;">View Chain</span>
+        </a>
         <a class="btn" button type="button" href="logout" style="color: #f7f4f4;">Logout</a>
     </div>
 
     <div class="main">
-        <div class="a">
+        <div class="header">
             <p style="color: antiquewhite;font-size: 50px; text-align: left;font-family: 'Frank Ruhl Libre', serif;">Usage Details</p>
         </div>
-        <div class="jumbotron">
-            <div class="progress">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                    style="width:70%">
-                    70%
-                </div>
-            </div>
+        <div class="container mx-auto text-center">
+            <form action="/mine" method="GET" style="display: inline">
+                <button id="btn1" type="submit" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
+            </form>
+            <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
         </div>
-
-        <table class="table table-bordered table-responsive " style="width: 400px">
+        <table class="table table-bordered">
             <thread>
                 <tr style="font-family: 'Frank Ruhl Libre', serif; font-size:22px">
-                    <th>User</th>
-                    <th>Power in kWhr</th>
-                    <th>Action</th>
+                    <th class="col-7">User</th>
+                    <th class="col-3">Power in kWhr</th>
+                    <th class="col-2">Action</th>
                 </tr>
             </thread>
             <tbody>
@@ -339,11 +352,6 @@
 
             </tbody>
         </table>
-        <form action="/mine" method="GET" style="display: inline">
-            <button id="btn1" type="submit" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
-        </form>
-        <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
-        <button id="btn3" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">History</button>
     </div>
     <div id="id01" class="modal">
         <form class="modal-content animate" action="/receive" method="POST">

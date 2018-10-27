@@ -51,7 +51,7 @@ app.get('/home', isLoggedIn, (req, res) => {
     // console.log(res.locals.currentUser);
     Receiver.find({}, (err, receiverList) => {
         if (!err) {
-            res.render('infopage', { receiverList: receiverList });
+            res.render('infopage', { receiverList: receiverList, user: res.locals.currentUser });
         } else {
             console.log(err);
         }
@@ -61,6 +61,11 @@ app.get('/home', isLoggedIn, (req, res) => {
 app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
+});
+
+app.get('/getBlocks', (req, res) => {
+    console.log(Blockchain.blocks);
+    res.render('block', { blockchain: Blockchain.blocks });
 });
 
 // post routes
