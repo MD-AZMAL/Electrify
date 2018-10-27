@@ -27,22 +27,20 @@ class Blockchain {
         return block;
     }
 
+    gethash(block) {
         let blockhash = SHA256(block.key);
+        while (!blockhash.startsWith("000")) {
 
-while (!blockhash.startsWith("000")) {
+            block.nonce += 1;
+            blockhash = SHA256(block.key);
 
-    block.nonce += 1;
-    blockhash = SHA256(block.key());
-
-}
-
-return blockhash;
-
+        }
+        return blockhash;
     }
 
-getprevblock(block) {
-    return this.blocks[this.blocks.length - 1];
+    getprevblock(block) {
+        return this.blocks[this.blocks.length - 1];
+    }
 }
 
-}
 module.exports = Blockchain;

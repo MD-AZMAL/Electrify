@@ -8,8 +8,8 @@ const express = require('express'),
     isLoggedIn = require('./middlewares/isLoggedIn'),
     User = require('./models/user'),
     Receiver = require('./models/receive'),
-    Block = require('./block'),
-    Blockchain = require('./blockchain'),
+    block = require('./block'),
+    blockchain = require('./blockchain'),
     app = express();
 
 mongoose.connect('mongodb://localhost:27017/electrify', {
@@ -32,9 +32,9 @@ let Blockchain = new blockchain(genesisblock);
 
 
 // passport setup
+app.use(expressSession({ secret: 'codaemon secret', saveUninitialized: false, resave: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(expressSession({ secret: 'codaemon secret', saveUninitialized: false, resave: false }));
 passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -68,9 +68,7 @@ app.get('/logout', (req, res) => {
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/home',
     failureRedirect: '/login'
-}), (req, res) => {
-
-});
+}));
 
 app.post('/signup', function (req, res) {
     var NewUser = new User({ username: req.body.username, email: req.body.email, userId: req.body.userId, points: 0, cash: 0 });
@@ -82,12 +80,16 @@ app.post('/signup', function (req, res) {
 
         passport.authenticate('local')(req, res, function () {
             console.log(user);
-            // res.redirect('/home');
+            res.redirect('/home');
         });
     });
 });
 
-app.post('/receive', isLoggedIn, (req, res) => {
+app.post('/send', (req, res) => {
+
+});
+
+app.post('/receive', (req, res) => {
     let rec = {
         receivername: req.body.receivername,
         receiverId: req.body.receiverId,
