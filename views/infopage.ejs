@@ -283,7 +283,6 @@
 
         <a class="btn" button type="button">Kw/hr</a>
         <a class="btn" button type="button">Balance</a>
-        <a class="btn" button type="button" onclick="document.getElementById('id02').style.display='block'">Mine</a>
         <a class="btn" button type="button">Points</a>
         <a class="btn" button type="button">Verify</a>
         <a class="btn" button type="button">View Chain</a>
@@ -337,7 +336,7 @@
 
 
 
-        <button id="btn1" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">Share</button>
+        <button id="btn1" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id02').style.display='block'">Mine</button>
         <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
         <button id="btn3" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">History</button>
 
@@ -362,15 +361,15 @@
                 </label>
                 <input type="text" placeholder="Enter Username" name="receivername" required>
 
-                <label for="receiverId">
+                <label for="receiveId">
                     <b>Receiver ID</b>
                 </label>
-                <input type="any" placeholder="Enter Receiver ID" name="receiverId" required>
+                <input type="any" placeholder="Enter Receiver ID" name="receiveId" required>
 
                 <label for="requirement">
-                    <b>Requirement</b>
+                    <b>Power Required</b>
                 </label>
-                <input type="any" placeholder="Enter Receiver Key" name="requirement" required>
+                <input type="any" placeholder="Enter the amount" name="requirement" required>
 
                 <button type="submit">Broadcast</button>
 
@@ -380,46 +379,34 @@
     </div>
 
     <script>
-
         var modal = document.getElementById('id01');
-
-
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-
-        console.log(receiversList);
     </script>
     <!--For Mining-->
+
     <div id="id02" class="modal">
 
         <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 
+            </div>
 
             <div class="container">
-                <h2>MINING...</h2>
+                <label for="uID">
+                    <b>User ID</b>
+                </label>
+                <input type="text" placeholder="Enter UserID" name="uID" required>
+                <button id="btnG" type="button" class="btn btn-success btn-sm">Mine</button>
             </div>
-            <div class="progress">
-                <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0"
-                    aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    <span id="current-progress"></span>
-
-                </div>
-
-            </div>
-            <button id="btnG" type="button" class="btn btn-success btn-sm">Go To Blocks</button>
-
         </form>
-
     </div>
-
     <script>
-
         var modal = document.getElementById('id02');
-
-
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
