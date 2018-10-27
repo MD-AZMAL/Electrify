@@ -1,26 +1,26 @@
-class Blocks{
-    
-    constructor(index,prevhash,senderkey,receiverkey,power,money){
+class Block {
 
-        this.index = index;
-        this.prevhash = prevhash;
+    constructor(senderkey, receiverkey, power, money) {
+
+        this.index = 0;
+        this.prevhash = "";
         this.hash = "";
         this.nonce = 0;
         this.data = {
-            senderkey:senderkey,
-            receiverkey:receiverkey,
-            power:power,
-            money:money
-      };
+            senderkey: senderkey,
+            receiverkey: receiverkey,
+            power: power,
+            money: money
+        };
     }
 
-    get key(){
+    get key() {
         return JSON.stringify(this.data) + this.index + this.prevhash + this.hash + this.nonce;
     }
 
-    addata(data){
-      this.data.push(data);    
+    addata(data) {
+        this.data.push(data);
     }
-             
+
 }
-module.exports=Blocks;
+module.exports = Block;
