@@ -47,15 +47,7 @@ app.get('/', (req, res) => {
     res.render('frontpage');
 });
 
-app.get('/sigup', (req, res) => {
-
-});
-
-app.get('/login', (req, res) => {
-    console.log('login')
-});
-
-app.get('/home', (req, res) => {
+app.get('/home', isLoggedIn, (req, res) => {
     // console.log(res.locals.currentUser);
     Receiver.find({}, (err, receiverList) => {
         if (!err) {
@@ -63,8 +55,7 @@ app.get('/home', (req, res) => {
         } else {
             console.log(err);
         }
-    })
-
+    });
 });
 
 app.get('/logout', (req, res) => {
@@ -75,7 +66,7 @@ app.get('/logout', (req, res) => {
 // post routes
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/home',
-    failureRedirect: '/login'
+    failureRedirect: '/'
 }));
 
 app.post('/signup', function (req, res) {
@@ -88,7 +79,7 @@ app.post('/signup', function (req, res) {
 
         passport.authenticate('local')(req, res, function () {
             console.log(user);
-            res.redirect('/home');
+            res.redirect('/');
         });
     });
 });
@@ -107,8 +98,8 @@ app.post('/send', isLoggedIn, (req, res) => {
                                 tempChain.push(tmp);
                                 Receiver.findByIdAndRemove(rec._id, (rmerr) => {
                                     if (!rmerr) {
-                                        console.log('removed');
-                                        res.send('sent');
+                                        console.log('removed and sent to temporary blockchain');
+                                        res.redirect('/home');
                                     } else {
                                         console.log(rmerr);
                                     }
@@ -139,8 +130,8 @@ app.post('/receive', isLoggedIn, (req, res) => {
     }
     Receiver.create(rec, (err, receiver) => {
         if (!err) {
-            console.log(receiver);
-            res.send('received on server');
+            console.log('received on server');
+            res.redirect('/home');
         } else {
             console.log('Error : ' + err);
         }
@@ -174,7 +165,8 @@ app.get('/mine', isLoggedIn, (req, res) => {
                                             miner.cash += 1;
                                             miner.save((savemerr) => {
                                                 if (!savemerr) {
-                                                    res.send('mining completed');
+                                                    console.log('mining completed');
+                                                    res.redirect('/home');
                                                 } else {
                                                     console.log(savemerr);
                                                 }
