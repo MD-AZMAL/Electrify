@@ -2,11 +2,11 @@ class Blocks{
     
     constructor(index,prevhash,senderkey,receiverkey,power,money){
 
-        this.index=index;
-        this.prevhash=prevhash;
-        this.hash="";
-        this.nonce=0;
-        this.data={
+        this.index = index;
+        this.prevhash = prevhash;
+        this.hash = "";
+        this.nonce = 0;
+        this.data = {
             senderkey:senderkey,
             receiverkey:receiverkey,
             power:power,
