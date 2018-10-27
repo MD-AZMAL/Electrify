@@ -1,3 +1,5 @@
+let Blockchain = require("./blockchain");
+
 const express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
@@ -16,6 +18,12 @@ mongoose.connect('mongodb://localhost:27017/electrify', {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+
+let blockchain  = new Blockchain();
+ 
+//use total block
+   blockchain.blocks;
+
 
 
 // passport setup
