@@ -10,8 +10,82 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+<style>
+        .sidenav
+        {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+            overflow-x: hidden;
+        }
+     @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+       } 
+        .sidenav a{
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color:#818181;
+            display: block;
+        }
+        .main{
+            margin-left: 250px;
+            font-size: 28px;
+            padding: 0px 10px;
+        }
+        .user
+        {
+          display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50% 50% 50% 50%;
+  
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-size: cover;
+    object-fit: cover;
+    padding:6px 8px 6px 16px
+   
+  }
+  .one {
+    background-image:url("userimg.png");
+    padding: 16px;
+    
+  }
+  .a{
+      background-color: #111;
+  }
+  #btn1{
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    width:15%;
+  }
+  #btn2
+  {
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    width:15%;
+  }
+  #btn3
+  {
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    width:15%;
+  }
+  
+       </style>
 </head>
 <body>
     <div class="sidenav">
@@ -34,7 +108,7 @@
 
         <div class="main">
             <div class="a">
-            <p style="color: antiquewhite;font-size: 50px; text-align: center">Usage Details</p>
+            <p style="color: antiquewhite;font-size: 50px; text-align: center;font-family: Noto-serif">Usage Details</p>
         </div>
             <div class="progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
@@ -43,9 +117,14 @@
                 </div>
               </div> 
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque eum pariatur exercitationem explicabo consequatur minus perferendis! Asperiores, omnis consequatur earum nisi excepturi dolorem sit fugiat, libero delectus provident, adipisci ex.</p>
-            <button type="button" class="btn btn-primary">Share</button>
-
+            
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iste quam adipisci eveniet vel enim recusandae soluta, aliquam sequi numquam placeat quos itaque odit quibusdam vitae vero cum deserunt mollitia!</p>
+       
+            <button id="btn1" type="button" class="btn btn-primary btn-lg">Share</button>
+            <button id="btn2" type="button" class="btn btn-primary btn-lg">Receive</button>
+            <button id="btn3" type="button" class="btn btn-primary btn-lg">History</button>
+            
+            
 
         </div>
 </body>
