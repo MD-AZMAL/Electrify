@@ -162,13 +162,13 @@ app.get('/mine', isLoggedIn, (req, res) => {
 
         User.findOne({ userId: minedBlock.data.senderkey }, (serr, sender) => {
             if (!serr) {
-                sender.cash = sender.cash + minedBlock.data.money - 1;
+                sender.cash = (sender.cash + minedBlock.data.money - 1).toFixed(2);
                 sender.points = sender.points - minedBlock.data.power;
                 sender.save((saveserr) => {
                     if (!saveserr) {
                         User.findOne({ userId: minedBlock.data.receiverkey }, (rerr, receiver) => {
                             if (!rerr) {
-                                receiver.cash = receiver.cash - minedBlock.data.money;
+                                receiver.cash = (receiver.cash - minedBlock.data.money).toFixed(2);
                                 receiver.points = receiver.points + minedBlock.data.power;
                                 receiver.save((savererr) => {
                                     if (!savererr) {
