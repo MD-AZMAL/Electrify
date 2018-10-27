@@ -310,7 +310,7 @@ span.psw {
 
 
 
-        <button id="btn1" type="button" class="btn btn-primary btn-lg;margin-right: 50px";onclick="document.getElementById('id02').style.display='block'">Mine</button>
+        <button id="btn1" type="button" class="btn btn-primary btn-lg;margin-right: 50px;"onclick="document.getElementById('id02').style.display='block'">Mine</button>
         <button id="btn2" type="button" class="btn btn-primary btn-lg;margin-right: 50px;" onclick="document.getElementById('id01').style.display='block'">Receive</button>
         <button id="btn3" type="button" class="btn btn-primary btn-lg;margin-right: 50px;">History</button>
 
@@ -358,22 +358,30 @@ span.psw {
           }
           </script>
           <!--For Mining-->
+          
           <div id="id02" class="modal">
   
-                <form class="modal-content animate" action="/action_page.php">
-                  
+            <form class="modal-content animate" action="/action_page.php">
+              <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                 
-                    <div class="container">
-                            <label for="uname"><b>User ID</b></label>
-                            <input type="text" placeholder="Enter Username" name="uname" required>
-                    </div>
+          </div>
+            
+                <div class="container">
+                  <label for="uID"><b>User ID</b></label>
+                  <input type="text" placeholder="Enter UserID" name="uID" required>
+            
+                
                     
-                            
-                           
+                  
+                  <button id="btnG" type="button" class="btn btn-success btn-sm">Mine</button>
+                </div>
+              
+            </form>
+          
+                    
                           
-                        <button id="btnG" type="button" class="btn btn-success btn-sm">Mine</button>
-                          
-                    </form>
+                   
                     
               </div>
               
