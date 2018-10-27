@@ -108,7 +108,13 @@ app.post('/send', isLoggedIn, (req, res) => {
                         });
                     } else {
                         console.log('Transaction not possible');
-                        res.redirect('home');
+                        Receiver.findOneAndRemove({ receiverId: req.body.receiverId }, (derr, obj) => {
+                            if (!derr) {
+                                res.redirect('home');
+                            } else {
+                                console.log(derr);
+                            }
+                        });
                     }
                 } else {
                     console.log(rerr);
