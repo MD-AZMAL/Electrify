@@ -173,12 +173,13 @@ table.center{
                       </tr>
                   </thread>
                   <tbody>
+                      <% receiverList.forEach((rec)=>{ %>
                       <tr style="font-family:'Noto Serif', serif; font-size: 20px">
-                          <td>Name</td>
-                          <td>Power</td>
+                          <td>rec.receivername</td>
+                          <td>rec.requirement</td>
                           <td><button type="button" class="btn btn-primary btn-sm" >Send</button></td>
                       </tr>
-                     
+                    <% }); %>
                             
                     </tbody>
                 </table>

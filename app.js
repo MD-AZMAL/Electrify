@@ -57,9 +57,16 @@ app.get('/login', (req, res) => {
     console.log('login')
 });
 
-app.get('/home', isLoggedIn, (req, res) => {
+app.get('/home', (req, res) => {
     // console.log(res.locals.currentUser);
-    res.render('infopage');
+    Receiver.find({},(err,receiverList)=> {
+        if(!err) {
+            res.render('infopage',{receiverList: receiverList});
+        } else {
+            console.log(err);
+        }
+    })
+    
 });
 
 app.get('/logout', (req, res) => {
