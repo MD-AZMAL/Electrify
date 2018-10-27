@@ -24,11 +24,9 @@ app.set('view engine', 'ejs');
 
 
 //use total block
-blockchain.blocks;
-
 let genesisblock = new block(0, '00000000000', '0,', '0', '0', '0');
 let Blockchain = new blockchain(genesisblock);
-
+var tempChain = [];
 
 
 // passport setup
@@ -71,7 +69,7 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.post('/signup', function (req, res) {
-    var NewUser = new User({ username: req.body.username, email: req.body.email, userId: req.body.userId, points: 0, cash: 0 });
+    var NewUser = new User({ username: req.body.username, email: req.body.email, userId: req.body.userId, points: 100, cash: 500 });
     User.register(NewUser, req.body.password, function (err, user) {
         if (err) {
             console.log('Error : ' + err);
@@ -86,7 +84,34 @@ app.post('/signup', function (req, res) {
 });
 
 app.post('/send', (req, res) => {
-
+    let cost = 10;
+    User.findOne({ userId: req.body.senderId }, (serr, sender) => {
+        if (!serr) {
+            User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
+                if (!rerr) {
+                    if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
+                        Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
+                            if (!err) {
+                                let cost = 10;
+                                let tmp = new block(req.body.senderId, req.body.receiverId, req.body.requirement, cost);
+                                tempChain.push(tmp);
+                                console.log(tmp);
+                            } else {
+                                console.log(err);
+                            }
+                        });
+                    } else {
+                        console.log('Transaction not possible');
+                        res.redirect('home');
+                    }
+                } else {
+                    console.log(rerr);
+                }
+            });
+        } else {
+            console.log(serr);
+        }
+    });
 });
 
 app.post('/receive', (req, res) => {
