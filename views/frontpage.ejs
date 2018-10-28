@@ -166,6 +166,7 @@
             background: #F2B134;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
 
 
@@ -292,8 +293,30 @@
             .cancelbtn {
                 width: 100%;
             }
+          
         }
+        hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0; 
+        }
+    .container{
+        text-align: center;
+        margin-right: 700px;
+        text-align: left;
+    }
+    
+    .inner{
+        width:20%;
+        display: inline-block;
+        
+        
+    }
     </style>
+
 
 
 </head>
@@ -302,10 +325,10 @@
     <div class="jumbotron" style="background-color: #112F41;color: #818181">
         <h1 class="display-2">ELECTRIFY</h1>
         <p class="lead">Smart Power Sharing solution using blockchain technology to reduce the power among the households.</p>
-    
+     <hr>
     <div class="container">
-        <button type="button" class="btn btn-basic" onclick="document.getElementById('id02').style.display='block'">SIGN UP</button>
-        <button type="button" class="btn btn-basic" onclick="document.getElementById('id01').style.display='block'">LOGIN</button>
+        <div class="inner"><button type="button" class="btn btn-basic" onclick="document.getElementById('id02').style.display='block'">SIGN UP</button></div>
+        <div class="inner"><button type="button" class="btn btn-basic" onclick="document.getElementById('id01').style.display='block'">LOGIN</button></div>
     </div>
 </div>
     <!--For Login In form-->
@@ -334,7 +357,7 @@
                 </label>
             </div>
 
-            <div class="container" style="background-color:#f1f1f1">
+            <div class="container" style="background-color:#f1f1f1;">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                 <span class="psw">Forgot
                     <a href="#">password?</a>
