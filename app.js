@@ -89,46 +89,68 @@ app.post('/signup', function (req, res) {
 });
 
 app.post('/send', isLoggedIn, (req, res) => {
-    let cost = 6.45 * req.body.requirement;
-    User.findOne({ userId: res.locals.currentUser.userId }, (serr, sender) => {
-        if (!serr) {
-            User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
-                if (!rerr) {
-                    if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
-                        Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
-                            if (!err) {
-                                let tmp = new block(res.locals.currentUser.userId, req.body.receiverId, Number(req.body.requirement), cost);
-                                tempChain.push(tmp);
-                                Receiver.findByIdAndRemove(rec._id, (rmerr) => {
-                                    if (!rmerr) {
-                                        console.log('removed and sent to temporary blockchain');
-                                        res.redirect('/home');
+    if (req.body.senderPower > req.body.requirement) {
+        console.log('Transaction not possible senderPower is greater');
+        Receiver.findOneAndRemove({ receiverId: req.body.receiverId }, (derr, obj) => {
+            if (!derr) {
+                res.redirect('home');
+            } else {
+                console.log(derr);
+            }
+        });
+    } else {
+        let cost = 6.45 * req.body.senderPower;
+        User.findOne({ userId: res.locals.currentUser.userId }, (serr, sender) => {
+            if (!serr) {
+                User.findOne({ userId: req.body.receiverId }, (rerr, receiver) => {
+                    if (!rerr) {
+                        if (receiver.cash - cost > 0 && sender.points - req.body.requirement > 0) {
+                            Receiver.findOne({ receiverId: req.body.receiverId }, (err, rec) => {
+                                if (!err) {
+                                    let tmp = new block(res.locals.currentUser.userId, req.body.receiverId, Number(req.body.senderPower), cost);
+                                    tempChain.push(tmp);
+                                    if (req.body.senderPower === req.body.requirement) {
+                                        Receiver.findByIdAndRemove(rec._id, (rmerr) => {
+                                            if (!rmerr) {
+                                                console.log('removed and sent to temporary blockchain');
+                                                res.redirect('/home');
+                                            } else {
+                                                console.log(rmerr);
+                                            }
+                                        });
                                     } else {
-                                        console.log(rmerr);
+                                        Receiver.findByIdAndUpdate(rec._id, { '$set': { 'requirement': req.body.requirement - req.body.senderPower } }, { new: true }, (ruperr, recup) => {
+                                            if (!ruperr) {
+                                                console.log('updated and sent to temporary blockchain');
+                                                res.redirect('/home');
+                                            } else {
+                                                console.log(ruperr);
+                                            }
+                                        });
                                     }
-                                });
-                            } else {
-                                console.log(rmerr);
-                            }
-                        });
+                                } else {
+                                    console.log(err);
+                                }
+                            });
+                        } else {
+                            console.log('Transaction not possible');
+                            Receiver.findOneAndRemove({ receiverId: req.body.receiverId }, (derr, obj) => {
+                                if (!derr) {
+                                    res.redirect('home');
+                                } else {
+                                    console.log(derr);
+                                }
+                            });
+                        }
                     } else {
-                        console.log('Transaction not possible');
-                        Receiver.findOneAndRemove({ receiverId: req.body.receiverId }, (derr, obj) => {
-                            if (!derr) {
-                                res.redirect('home');
-                            } else {
-                                console.log(derr);
-                            }
-                        });
+                        console.log(rerr);
                     }
-                } else {
-                    console.log(rerr);
-                }
-            });
-        } else {
-            console.log(serr);
-        }
-    });
+                });
+            } else {
+                console.log(serr);
+            }
+        });
+    }
 });
 
 app.post('/receive', isLoggedIn, (req, res) => {
@@ -178,7 +200,7 @@ app.get('/mine', isLoggedIn, (req, res) => {
                                                 miner.save((savemerr) => {
                                                     if (!savemerr) {
                                                         console.log('mining completed');
-                                                        res.redirect('/home');
+                                                        res.redirect('/getBlocks');
                                                     } else {
                                                         console.log(savemerr);
                                                     }
