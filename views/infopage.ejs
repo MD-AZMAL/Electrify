@@ -92,14 +92,16 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 1em 0;
-        padding: 0; 
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 1em 0;
+            padding: 0;
         }
+
         .header {
             background-color: #111;
             margin-left: 0;
@@ -274,6 +276,19 @@
             font-weight: bolder;
             font-size: 1.2rem;
         }
+
+        .form-in {
+            display: flex;
+        }
+
+        .finp {
+            flex: 1;
+            margin-top: 6px;
+        }
+
+        .fbtn {
+            flex: 2;
+        }
     </style>
 
     <!--.flex-container {
@@ -318,8 +333,9 @@
             <span class="boldIt">View Chain</span>
         </a>
         <a class="btn" button type="button" href="logout" style="color: #f7f4f4;">
-                <span class="boldIt">Logout</span></a>
-        
+            <span class="boldIt">Logout</span>
+        </a>
+
     </div>
 
     <div class="main">
@@ -335,9 +351,9 @@
         <table class="table table-bordered">
             <thread>
                 <tr style="font-family: 'Frank Ruhl Libre', serif; font-size:22px">
-                    <th class="col-7">User</th>
+                    <th class="col-5">User</th>
                     <th class="col-3">Power in kWhr</th>
-                    <th class="col-2">Action</th>
+                    <th class="col-5">Action</th>
                 </tr>
             </thread>
             <tbody>
@@ -351,9 +367,12 @@
                         </td>
                         <td>
                             <form action="/send" method="POST">
-                                <input type="hidden" placeholder="Enter Receiver ID" name="receiverId" required value="<%= rec.receiverId %>">
-                                <input type="hidden" placeholder="Enter Receiver ID" name="requirement" required value="<%= rec.requirement%>">
-                                <button type="submit" class="btn btn-primary btn-sm send_data">Send</button>
+                                <div class="form-in">
+                                    <input type="hidden" name="receiverId" required value="<%= rec.receiverId %>" class="form-control">
+                                    <input type="hidden" name="requirement" required value="<%= rec.requirement %>" class="form-control">
+                                    <input type="any" placeholder="Enter Power to Share" name="senderPower" required class="finp form-control-sm">
+                                    <button type="submit" class="btn btn-primary btn-sm send_data fbtn">Send</button>
+                                </div>
                             </form>
                         </td>
                     </tr>
@@ -395,5 +414,5 @@
                 modal.style.display = "none";
             }
         }
-    </script> });
+    </script>
 </body>
